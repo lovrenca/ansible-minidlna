@@ -2,7 +2,10 @@
 
 Minidlna ansible role. It installs and configures minidlna on server.
 
-# Optional variables
+Supported distributions:
+- ArchLinux
+
+## Optional variables
 * minidlna_main_port: Port for minidlna to listen at
 * minidlna_address: Bind address for socket
 * minidlna_media_dir: Directory to serve via minidlna
