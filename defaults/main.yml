@@ -1,0 +1,6 @@
+minidlna_media_dir: "/srv/minidlna/"
+minidlna_main_port: "8200"
+minidlna_address: "127.0.0.1"
+minidlna_friendly_name: "{{ inventory_hostname }}"
+minidlna_user: minidlna
+minidlna_local_subnet: "{{ ansible_eth0.ipv4.network }}/24"

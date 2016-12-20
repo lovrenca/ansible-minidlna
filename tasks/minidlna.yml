@@ -1,0 +1,38 @@
+---
+
+- name: Install
+  pacman:
+    name: minidlna
+    state: latest
+  notify: Restart minidlna
+
+- name: Create media directory
+  file:
+    state: directory
+    name: "{{ minidlna_media_dir }}"
+    mode: 0777
+    owner: "{{ minidlna_user }}"
+    group: "{{ minidlna_user }}"
+
+- name: Configure
+  template:
+    src: minidlna.conf
+    dest: /etc/minidlna.conf
+    mode: 0644
+    owner: root
+    group: root
+  notify: Restat minidlna
+
+- name: Open port 8200
+  ufw:
+    policy: allow
+    proto: tcp
+    to_port: 8200
+    from_ip: "{{ minidlna_local_subnet }}"
+
+- name: Open port 1900
+  ufw:
+    policy: allow
+    proto: udp
+    to_port: 1900
+    from_ip: "{{ minidlna_local_subnet }}"
